@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xylis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Unbounded:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 20px;
+    }
+
+    .discord-img img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #1DB954;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .links a:hover {
+      background-color: #1ed760;
+    }
+
+    .unmute-message {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <!-- YouTube Video Embed -->
+  <div class="video-container">
+    <iframe
+      id="youtube-video"
+      src="https://www.youtube.com/embed/P4n2DklcI1w?autoplay=1&mute=1&loop=1&playlist=P4n2DklcI1w&enablejsapi=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Overlay Content -->
+  <div class="overlay">
+    <div class="card">
+      <!-- Discord Profile Picture -->
+      <div class="discord-img">
+        <img src="https://comicvine.gamespot.com/a/uploads/scale_super/11161/111610667/9118022-4113228703-13106.jpg" alt="Xylis Profile Picture">
+      </div>
+      <h1>XYLIS</h1>
+      <div class="links">
+        <a href="https://open.spotify.com/user/lrfzmzka45hygd35iib0p5nar?si=31c0ac4a92254124" target="_blank">My Spotify</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Click to Enable Sound Message -->
+  <div class="unmute-message" id="unmute-message">Click anywhere to enable sound</div>
+
+  <!-- YouTube Iframe API Script -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('youtube-video', {
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      const message = document.getElementById('unmute-message');
+      document.body.addEventListener('click', () => {
+        event.target.unMute();
+        event.target.playVideo();
+        message.style.display = 'none';
+      }, { once: true });
+    }
+  </script>
+</body>
+</html>
