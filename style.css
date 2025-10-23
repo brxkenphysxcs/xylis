@@ -87,3 +87,34 @@ h1 {
 .discord-link:hover {
   background-color: #5e73a3; /* Lighter Discord Blue */
 }
+
+.links a {
+  display: inline-block;
+  margin: 15px 10px;        /* more spacing around buttons */
+  padding: 16px 50px;       /* bigger buttons */
+  font-size: 1.5rem;        /* larger text */
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;      /* slightly rounder corners */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* subtle shadow to make it pop */
+}
+
+.spotify-link {
+  background-color: #1DB954;
+  color: white;
+}
+
+.spotify-link:hover {
+  background-color: #1ed760;
+}
+
+.roblox-link {
+  background-color: #FF0000;
+  color: white;
+}
+
+.roblox-link:hover {
+  background-color: #ff4d4d;
+}
+
